@@ -6,7 +6,7 @@ for i in `seq -w 0 "$(( ${#test_names[@]} - 1))" `; do
     echo $test
     echo $i
     echo "${logins[$i]}"
-    url="$(ssh ${logins[$i]} ${!test} | tail -n 1)"
+    url="$(ssh -o "StrictHostKeyChecking=no" ${logins[$i]} ${!test} | tail -n 1)"
     status_code="$(curl -s -o /dev/null -w "%{http_code}" $url)"
     if [[ $status_code != 200 ]]; then
         echo -e "\e[31mFailed ${test_names[$i]}\e[0m"
