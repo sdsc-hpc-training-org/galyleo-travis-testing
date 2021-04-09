@@ -1,2 +1,2 @@
 language: bash
-script: chmod u+x test-galyleo.sh
+script: chmod u+x test-galyleo.sh && bash test-galyleo.sh
