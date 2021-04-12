@@ -1,11 +1,8 @@
-echo "Geting Galyleo tests"
+echo "Running Galyleo tests"
 source tests.sh
 for i in `seq -w 0 "$(( ${#test_names[@]} - 1))" `; do
     this_test=test
     eval $this_test="test$i"
-    echo $test
-    echo $i
-    echo "${logins[$i]}"
     url="$(ssh -o "StrictHostKeyChecking=no" ${logins[$i]} ${!test} | tail -n 1)"
     status_code="$(curl -s -o /dev/null -w "%{http_code}" $url)"
     if [[ $status_code != 200 ]]; then
